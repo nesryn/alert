@@ -22,6 +22,7 @@
 
     # always loaded
     'data': [
+        'security/rules.xml',
 
     ],
     # only loaded in demonstration mode

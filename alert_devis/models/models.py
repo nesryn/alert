@@ -12,16 +12,11 @@ class SaleOrder(models.Model):
 
     @api.onchange('order_line')
     def show_alert(self):
-        print('aaaaaaaa',self)
-        print('aaaaaaaa',self.order_line.ids)
         ordes_ids = []
         for rec in self.order_line:
-            print(rec.product_id)
-            (ordes_ids)
-            if rec.product_id.id in ordes_ids and  self.env.user.has_group('base.group_no_one'):
+            if rec.product_id.id in ordes_ids and  self.env.user.has_group('alert_devis.group_manage_price'):
                 raise ValidationError(
-                    ('vous avez ajouté l’article … en double')
+                    ('vous avez ajouté l’article %s en double ' ) % rec.product_id.name
                  )
             ordes_ids.append(rec.product_id.id)
-            print
 
